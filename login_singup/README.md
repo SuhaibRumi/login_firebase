@@ -1,6 +1,6 @@
 # login_singup
 
-A new Flutter project.
+SignIn and SignUp With FireBaseAtuh to use Email or Password..
 
 ## Getting Started
 
