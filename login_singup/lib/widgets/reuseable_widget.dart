@@ -10,15 +10,13 @@ Image logoImg(String url) {
   );
 }
 
-// This is TextField
-TextField reuseableTextField(String text, IconData icon, bool isPasswordType,
-    TextEditingController controller) {
+// This is TextField For name or email
+TextField reuseableTextField(
+    String text, IconData icon, TextEditingController controller) {
   return TextField(
     controller: controller,
-    obscureText: isPasswordType,
-    enableSuggestions: !isPasswordType,
-    autocorrect: !isPasswordType,
-    cursorColor: Colors.white,
+    autofocus: true,
+    cursorColor: const Color.fromARGB(255, 57, 43, 43),
     style: TextStyle(color: Colors.white.withOpacity(0.9)),
     decoration: InputDecoration(
       prefixIcon: Icon(
@@ -34,13 +32,37 @@ TextField reuseableTextField(String text, IconData icon, bool isPasswordType,
           borderRadius: BorderRadius.circular(30.0),
           borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
     ),
-    keyboardType: isPasswordType
-        ? TextInputType.visiblePassword
-        : TextInputType.emailAddress,
   );
 }
 
-Container reuseableButton(BuildContext context, String title, Function onTap) {
+// This is TextField For Password
+TextField reuseableTextFieldPassword(
+    String text, IconData icon, TextEditingController controller) {
+  return TextField(
+    controller: controller,
+    obscureText: true,
+    autofocus: true,
+    cursorColor: const Color.fromARGB(255, 57, 43, 43),
+    style: TextStyle(color: Colors.white.withOpacity(0.9)),
+    decoration: InputDecoration(
+      prefixIcon: Icon(
+        icon,
+        color: Colors.white70,
+      ),
+      labelText: text,
+      labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+      filled: true,
+      floatingLabelBehavior: FloatingLabelBehavior.never,
+      fillColor: Colors.white.withOpacity(0.3),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30.0),
+          borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
+    ),
+  );
+}
+
+// This is Button
+reuseableButton(BuildContext context, String title, Function() onPrseed) {
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 50,
@@ -52,9 +74,7 @@ Container reuseableButton(BuildContext context, String title, Function onTap) {
     ),
     decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
     child: ElevatedButton(
-      onPressed: () {
-        onTap();
-      },
+      onPressed: onPrseed,
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith((states) {
           if (states.contains(MaterialState.pressed)) {

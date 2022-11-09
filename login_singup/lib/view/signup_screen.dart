@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 import '../widgets/reuseable_widget.dart';
@@ -46,25 +47,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 20,
                 ),
                 reuseableTextField("Enter UserName", Icons.person_outlined,
-                    false, _nameTextController),
+                     _nameTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reuseableTextField("Enter Email", Icons.person_outlined, false,
+                reuseableTextField("Enter Email", Icons.person_outlined, 
                     _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reuseableTextField("Enter Password", Icons.lock_outlined, false,
+                reuseableTextFieldPassword("Enter Password", Icons.lock_outlined, 
                     _passwordTextController),
                 const SizedBox(
                   height: 20,
                 ),
                 reuseableButton(context, "Sign Up", () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomeScreen()));
+                  FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
+                          email: _emailTextController.text,
+                          password: _passwordTextController.text)
+                      .then((value) {
+                    print("create new account");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()));
+                  }).onError((error, stackTrace) {
+                    print("error${error.toString()}");
+                  });
                 }),
               ]),
             ),

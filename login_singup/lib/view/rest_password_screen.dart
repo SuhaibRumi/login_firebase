@@ -43,7 +43,7 @@ class _RestPasswordState extends State<RestPassword> {
                 const SizedBox(
                   height: 20,
                 ),
-                reuseableTextField("Enter Email", Icons.person_outlined, false,
+                reuseableTextField("Enter Email", Icons.person_outlined, 
                     _emailTextController),
                 const SizedBox(
                   height: 20,

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "708750291053",
+    "project_id": "fir-signin-fa554",
+    "storage_bucket": "fir-signin-fa554.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708750291053:android:f39ce3f7ddbc7ffcc08f64",
+        "android_client_info": {
+          "package_name": "com.example.login_singup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708750291053-ula81jf8hpcqpf86319fvvcg5r1r57cn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXG4aEw3tcwZY_zmCtTCO6lQ62p5xubpI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708750291053-ula81jf8hpcqpf86319fvvcg5r1r57cn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

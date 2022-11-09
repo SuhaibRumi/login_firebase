@@ -1,17 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:login_singup/view/rest_password_screen.dart';
 import '../utils/colors.dart';
 import '../widgets/reuseable_widget.dart';
 import 'screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
   @override
@@ -35,22 +36,35 @@ class _LoginScreenState extends State<LoginScreen> {
                     20, MediaQuery.of(context).size.height * 0.2, 20, 0),
                 child: Column(
                   children: [
-                    logoImg("assets/login.png"),
+                    logoImg("assets/images/login.png"),
                     const SizedBox(
                       height: 30,
                     ),
-                    reuseableTextField("Enter UserName", Icons.person_outlined, false,
+                    reuseableTextField("Enter UserName", Icons.person_outlined,
                         _emailTextController),
                     const SizedBox(
                       height: 20,
                     ),
-                    reuseableTextField("Enter Password", Icons.lock_outlined, false,
-                        _passwordTextController),
+                    reuseableTextFieldPassword("Enter Password",
+                        Icons.lock_outlined, _passwordTextController),
                     const SizedBox(
                       height: 8,
                     ),
                     forgetPassword(context),
-                    reuseableButton(context, 'Login', () {}),
+                    reuseableButton(context, 'Login', () {
+                      FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                              email: _emailTextController.text,
+                              password: _passwordTextController.text)
+                          .then((value) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomeScreen()));
+                      }).onError((error, stackTrace) {
+                        print("error${error.toString()}");
+                      });
+                    }),
                     signUpOption(),
                   ],
                 ),
