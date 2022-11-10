@@ -44,7 +44,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Column(
                   children: [
                     logoImg("assets/images/login.png"),
-                    const Text("welcome n/Login"),
+                    
                     const SizedBox(
                       height: 30,
                     ),
