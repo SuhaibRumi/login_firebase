@@ -11,11 +11,10 @@ Image logoImg(String url) {
 }
 
 // This is TextField For name or email
-TextField reuseableTextField(
+reuseableTextField(
     String text, IconData icon, TextEditingController controller) {
   return TextField(
     controller: controller,
-    autofocus: true,
     cursorColor: const Color.fromARGB(255, 57, 43, 43),
     style: TextStyle(color: Colors.white.withOpacity(0.9)),
     decoration: InputDecoration(
@@ -36,12 +35,11 @@ TextField reuseableTextField(
 }
 
 // This is TextField For Password
-TextField reuseableTextFieldPassword(
+reuseableTextFieldPassword(
     String text, IconData icon, TextEditingController controller) {
-  return TextField(
+  TextField(
     controller: controller,
     obscureText: true,
-    autofocus: true,
     cursorColor: const Color.fromARGB(255, 57, 43, 43),
     style: TextStyle(color: Colors.white.withOpacity(0.9)),
     decoration: InputDecoration(
@@ -63,32 +61,34 @@ TextField reuseableTextFieldPassword(
 
 // This is Button
 reuseableButton(BuildContext context, String title, Function() onPrseed) {
-  return Container(
-    width: MediaQuery.of(context).size.width,
-    height: 50,
-    margin: const EdgeInsets.fromLTRB(
-      0,
-      10,
-      0,
-      20,
-    ),
-    decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
-    child: ElevatedButton(
-      onPressed: onPrseed,
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.pressed)) {
-            return Colors.black26;
-          }
-          return Colors.white;
-        }),
-        shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+  return InkWell(
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      height: 50,
+      margin: const EdgeInsets.fromLTRB(
+        0,
+        10,
+        0,
+        20,
       ),
-      child: Text(
-        title,
-        style: const TextStyle(
-            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
+      child: ElevatedButton(
+        onPressed: onPrseed,
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.grey;
+            }
+            return Colors.white;
+          }),
+          shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+        ),
+        child: Text(
+          title,
+          style: const TextStyle(
+              color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
+        ),
       ),
     ),
   );

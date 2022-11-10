@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 import '../widgets/reuseable_widget.dart';
@@ -43,12 +44,16 @@ class _RestPasswordState extends State<RestPassword> {
                 const SizedBox(
                   height: 20,
                 ),
-                reuseableTextField("Enter Email", Icons.person_outlined, 
-                    _emailTextController),
+                reuseableTextField(
+                    "Enter Email", Icons.person_outlined, _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reuseableButton(context, "Rest Password", () {})
+                reuseableButton(context, "Rest Password", () {
+                  FirebaseAuth.instance
+                      .sendPasswordResetEmail(email: _emailTextController.text)
+                      .then((value) => Navigator.of(context).pop());
+                })
               ]),
             ),
           ),

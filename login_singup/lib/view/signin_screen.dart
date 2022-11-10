@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:login_singup/view/rest_password_screen.dart';
 import '../utils/colors.dart';
 import '../widgets/reuseable_widget.dart';
 import 'screen.dart';
@@ -15,6 +14,14 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _passwordTextController.dispose();
+    _emailTextController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,6 +44,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Column(
                   children: [
                     logoImg("assets/images/login.png"),
+                    const Text("welcome n/Login"),
                     const SizedBox(
                       height: 30,
                     ),
@@ -45,8 +53,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    reuseableTextFieldPassword("Enter Password",
-                        Icons.lock_outlined, _passwordTextController),
+                    reuseableTextField("Enter Password", Icons.lock_outlined,
+                        _passwordTextController),
                     const SizedBox(
                       height: 8,
                     ),
@@ -61,9 +69,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const HomeScreen()));
-                      }).onError((error, stackTrace) {
-                        print("error${error.toString()}");
-                      });
+                      }).onError((error, stackTrace) {});
                     }),
                     signUpOption(),
                   ],
